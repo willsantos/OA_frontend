@@ -1,22 +1,20 @@
-# name: pull-request
-# on:
-#   pull_request:
-#     branches: [develop]
-# jobs:
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Check out code
-#         uses: actions/checkout@v2
-#       - name: Set up Node.js
-#         uses: actions/setup-node@v2
-#         with:
-#           node-version: "18.x"
-#       - name: Change directory to app
-#         run: cd app
-#       - name: Install dependencies
-#         run: npm install
-#       - name: Build Angular app
-#         run: npm run build -- --prod --base-href /app/
-#       - name: Run tests
-#         run: npm test
+name: pull-request
+on:
+  pull_request:
+    branches: [develop]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "18.x"
+      - name: Install dependencies
+        run: npm install
+      - name: Build Angular app
+        run: npm run build -- --prod 
+      - name: Run tests
+        run: npm test

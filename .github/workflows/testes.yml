@@ -8,11 +8,13 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v2
-      - name: Set up .NET
-        uses: actions/setup-dotnet@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          dotnet-version: "6.0.x"
-      - name: Restore dependencies
-        run: dotnet restore
+          node-version: "18.x"
+      - name: Install dependencies
+        run: npm install
+      - name: Build Angular app
+        run: npm run build -- --prod
       - name: Run tests
-        run: dotnet test Test --no-restore
+        run: npm test
